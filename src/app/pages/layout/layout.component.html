@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="ticketList"><i class="fa fa-ticket" aria-hidden="true"></i>Ticket</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="dashboard">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"routerLink="department">Department</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"routerLink="parentCategory">Parent Category</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"routerLink="childCategory">Child Category</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"routerLink="employee">Employee</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"routerLink="newTicket">New Ticket</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"routerLink="ticketList">Ticket List</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <span class="text-white"></span>
+          <button class="btn btn-outline-light mx-2"><i class="fa fa-user-circle-o mx-2" aria-hidden="true"></i>{{loggedUserData.emailId}}</button>
+          <button class="btn btn-outline-light" (click)="onLogOut()"><i class="fa fa-sign-out mx-2" aria-hidden="true"></i>Sign Out</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>

@@ -1,0 +1,96 @@
+<div class="row mb-2">
+    <div class="col-12">
+        <div class="btn-group mx-2 mt-2">
+            <button type="button" (click)="changeBtn('My Tickets')" [class]= " mode == 'My Tickets' ? 'btn btn-warning' : 'btn btn-outline-warning'">My Ticket</button>
+            <button type="button" (click)="changeBtn('Assigned Tickets')" [class]= " mode == 'Assigned Tickets' ? ' btn btn-success' : 'btn btn-outline-success'">Assigned Ticket</button> 
+          </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        @if(mode == 'Assigned Tickets'){
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Sr No</th>
+                        <th>Ticket No</th>
+                        <th>Employee Name</th>
+                        <th>Created Date</th>
+                        <!-- <th>Expected End Date</th> -->
+                        <th>state</th>
+                        <th>Category</th>
+                        <th>Sub Category</th>
+                        <th>Details</th>
+                        <th class="text-center">Action</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (item of ticketAssginList; track $index) {
+                        <tr>
+                            <td>{{$index+1}}</td>
+                            <td>{{item.ticketNo}}</td>
+                            <td>{{item.employeeName}}</td>
+                            <td>{{item.createdDate | date: 'dd-MMM-yyyy'}}</td>
+                            <!-- <td>{{item.expectedEndDate | date: 'dd-MMM-yyyy }}</td> -->
+                            <td>{{item.state}}</td>
+                            <td>{{item.parentCategoryName}}</td>
+                            <td>{{item.childCategoryName}}</td>
+                            <td>{{item.requestDetails}}</td>
+                            <td>
+                                @if(item.state == 'Assigned'){
+                                     <button class="btn btn-sm btn-success mx-2" (click)="changeState('Start',item.ticketId)">Start</button>
+                                }@else if(item.state == 'In-Progress'){
+                                     <button class="btn btn-sm btn-danger mx-2" (click)="changeState('Closed',item.ticketId)">Close</button>
+                                }                              
+                            </td>
+                            <!-- <td class="text-center">
+                                <button class="btn btn-sm btn-primary mx-2" (click)="onEdit(item)">Edit</button>
+                                <button class="btn btn-sm btn-danger" (click)="onDelete(item.ticketId)">Delete</button>
+                             </td> -->
+                        </tr>
+                    }
+    
+                </tbody>
+    
+            </table>
+        }@else{
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Sr No</th>
+                        <th>Ticket No</th>
+                        <th>Department</th>
+                        <th>Created By</th>
+                        <th>Contact No</th>
+                        <th>Created Date</th>
+                        <th>state</th>
+                        <th>Assigned To</th>
+                        <th>Category</th>
+                        <th>Sub Category</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (item of ticketsList; track $index) {
+                        <tr>
+                            <td>{{$index+1}}</td>
+                            <td>{{item.ticketNo}}</td>
+                            <td>{{item.deptName}}</td>
+                            <td>{{item.createdByEmployee}}</td>
+                            <td>{{item.contactNo}}</td>
+                            <td>{{item.createdDate | date: 'dd-MMM-yyyy'}}</td>
+                            <td>{{item.state}}</td>
+                            <td>{{item.assignedToEmployee}}</td>
+                            <td>{{item.parentCategory}}</td>
+                            <td>{{item.childCategory}}</td>
+                        </tr>
+                    }
+    
+                </tbody>
+    
+            </table>
+        }
+
+    </div>
+</div>
+
